@@ -5,6 +5,7 @@ import threading
 import math
 from tkFileDialog import *
 import os
+from __future__ import print_function
 
 DEFAULT_CODE = """# Use Python syntax to define the function f that takes
 # one argument (the scalar product) and returns the associated energy.
@@ -117,7 +118,7 @@ def do_work(input_fname, output_fname, code, input_type):
                 spherical_to_cartesian(float(parts[0]), float(parts[1]),
                                        float(parts[2]))
         else:
-            print input_type
+            print(input_type)
             raise RuntimeError("Don't know how to handle this input type")
         points.append(point)
 
@@ -125,12 +126,12 @@ def do_work(input_fname, output_fname, code, input_type):
     user_namespace = {}
     exec code in user_namespace
     f = user_namespace["f"]
-    print f
+    print(f)
 
     # Calculate code energy
     energy_sum = 0
     for i in range(len(points)):
-        print points[i]
+        print(points[i])
         for j in range(i+1, len(points)):
             pt1 = points[i]
             pt2 = points[j]
@@ -138,7 +139,7 @@ def do_work(input_fname, output_fname, code, input_type):
             energy_sum += f(sp)
 
     # Output
-    print >>fout, energy_sum
+    print(energy_sum, file=fout)
 
     # Notify user
     tkMessageBox.showinfo("Done!", "Calculation complete. The answer is: " + str(energy_sum))
