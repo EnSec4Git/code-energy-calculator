@@ -18,7 +18,7 @@ DEFAULT_CODE = """# Use Python syntax to define the function f that takes
 # one argument (the scalar product) and returns the associated energy.
 # Example - Riesz energy
 def f(x):
-    return x*x
+    return pow((2*(1-x)),-2)
 
 """
 
