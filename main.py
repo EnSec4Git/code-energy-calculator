@@ -1,11 +1,18 @@
-from Tkinter import Button, Tk, Toplevel, Label, Listbox, Scrollbar, LabelFrame, Entry, Frame, Radiobutton, Text
-import Tkinter
-import tkMessageBox
+from __future__ import print_function
+import __future__
+try:
+    from Tkinter import Button, Tk, Toplevel, Label, Listbox, Scrollbar, LabelFrame, Entry, Frame, Radiobutton, Text
+    import Tkinter
+    import tkMessageBox
+    from tkFileDialog import *
+except ImportError:
+    from tkinter import Button, Tk, Toplevel, Label, Listbox, Scrollbar, LabelFrame, Entry, Frame, Radiobutton, Text
+    import tkinter as Tkinter
+    import tkinter.messagebox as tkMessageBox
+    from tkinter.filedialog import *
 import threading
 import math
-from tkFileDialog import *
 import os
-from __future__ import print_function
 
 DEFAULT_CODE = """# Use Python syntax to define the function f that takes
 # one argument (the scalar product) and returns the associated energy.
@@ -124,7 +131,7 @@ def do_work(input_fname, output_fname, code, input_type):
 
     # Run the code the user wrote
     user_namespace = {}
-    exec code in user_namespace
+    exec(code, user_namespace)
     f = user_namespace["f"]
     print(f)
 
